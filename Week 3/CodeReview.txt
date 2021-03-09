@@ -9,4 +9,4 @@ Phase 1 - Naming conventions
 			
 			-remove the hard-coded values ("magic values" 0.1f)
 			
-			 
+			 -add validations for input values
