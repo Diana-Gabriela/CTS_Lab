@@ -4,21 +4,27 @@ import ro.ase.csie.cts.g1094.refactor.exceptions.InvalidAgeException;
 import ro.ase.csie.cts.g1094.refactor.exceptions.InvalidPriceException;
 import ro.ase.csie.cts.g1094.refactor.phase3.services.Marketing2021Strategy;
 import ro.ase.csie.cts.g1094.refactor.phase3.services.MarketingServiceInterface;
+import ro.ase.csie.cts.g1094.refactor.phase3.services.ValidatorServiceInterface;
 
 public class Product {
 	
 	MarketingServiceInterface mkService= null;
+	ValidatorServiceInterface validator= null;
 	
-	public Product(MarketingServiceInterface mkService) {
+	public Product(MarketingServiceInterface mkService,
+			ValidatorServiceInterface validator) {
 		
 	/*	if (mkService==null) {
 			throw new NullPointerException();
 			
 		}  */
 		this.setMarketingService(mkService);
+		this.validator=validator;
+
 	}
 	
-	public void setMarketingService(MarketingServiceInterface mkService) {
+	public void setMarketingService(MarketingServiceInterface mkService
+			) {
 		if (mkService==null) {
 		throw new NullPointerException();
 		}
@@ -47,10 +53,9 @@ public class Product {
 		if (price<=0) {
 			throw new InvalidPriceException();				
 		}
+		validator.validatePrice(price);
+		validator.validateAge(accountAge);
 		
-		if (accountAge ==0) {
-			throw new InvalidAgeException();				
-		}
 		
 	    
 	    float fidelityDiscount =(productType == ProductType.NEW)? 0 :mkService.getFidelityDiscount(accountAge);
