@@ -23,7 +23,7 @@ public class DbConnection {
 		this.schema = schema;
 	}
 	
-	
+	//lazy instantiations of the unique object
 	public static DbConnection getConnection() {
 		if(DbConnection.connection==null) {
 			connection=new DbConnection();

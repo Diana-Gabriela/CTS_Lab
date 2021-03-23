@@ -6,3 +6,6 @@ In order to create an online game (with super heroes), you need to create a soft
 associated with the database connection
 - the client must use an unique object to 
 take care of the connection to the database
+
+2. App will use different dbs for development and production
+The connections must be unique
