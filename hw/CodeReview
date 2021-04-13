@@ -1,0 +1,21 @@
+code review
+
+Phase 1 - Naming conventions
+			-rename loan method
+			-rename Calculeaze and used lowerCamelCase
+			-rename t, s, perioada
+			-rename rezultat
+			-renamne valoare
+			
+			-remove the hard-coded values ("magic values" 0.1f)
+			
+			 -add validations for input values
+
+Phase 2 - KISS & Single Responsibility
+			-simplify the expressions
+			-a function should do only one thing
+			
+Phase 3 - Single Responsibility & Dependency Inversion (DIP)
+-the static final value may change when the marketing strategy will change
+-getFidelityDiscount() may change when mk strategy will change
+-remove dependeny on validation rules
