@@ -1,0 +1,32 @@
+
+Bachelor topic-Kickstarter Projects Success Prediction
+	My topic is predicting whether a projects will be able
+	 to successfully raise the moneyit set out to raise in a certain time frame. 
+	The bachelor thesis is 
+	developed entirely in Jupyter Notebook using Python for algorithms
+	and data visualisation. Since I did not develop any apps I had to create
+	specific scenarios to do the assignment that do not match the reality
+	of my project exactly.
+
+
+Problem to be solved by pattern:
+	We want the users of the app to introduce their project data, and to create
+	the instances based on that effectively. The base necessary information needed
+	is a project name and goal, after that the users can add the other information.
+	I have many attributes to be analysed besides the ones implemented
+	(about 13 in total) but implementing everything is beyond the scope of the 
+	assignment.
+	
+Advantages for the solution
+	Builder allows for efficient data validation
+	Builder creates instances that can't be modified later (so you can't chance
+	category later for example, it would mess up the algorithm results)
+	Easier to maintain for may fields and less error prone
+	
+Disadvanages
+	May complicate dependency injection later
+	The builder class must be mutable
+	
+	
+	
+

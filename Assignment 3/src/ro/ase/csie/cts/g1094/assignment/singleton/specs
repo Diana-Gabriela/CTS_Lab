@@ -1,0 +1,33 @@
+-same alg, same analysis
+-can't create by accident other instances
+
+
+-can't change during execution the alg
+-can't pick from more
+
+
+Bachelor topic-Kickstarter Projects Success Prediction
+	My topic is predicting whether a projects will be able
+	 to successfully raise the moneyit set out to raise in a certain time frame. 
+	The bachelor thesis is 
+	developed entirely in Jupyter Notebook using Python for algorithms
+	and data visualisation. Since I did not develop any apps I had to create
+	specific scenarios to do the assignment that do not match the reality
+	of my project exactly.
+
+
+Problem to be solved by pattern:
+	The after the user introduces the project details, analysis phase starts, where 
+	a single algorithm will be used to predict success. (in reality many algorithms 
+	will be tested and adjusted, then the optimal and most reliable one will be used)
+	
+Advantages for the solution
+	Singleton allows for an unique instance that can't be accidentally created again later
+	Permits lazy initialization
+	
+Disadvanages
+	May present unnecessary restrictions
+	It can't be inherited from, so new functionalities can't be implemented in a descendant
+	
+	
+
