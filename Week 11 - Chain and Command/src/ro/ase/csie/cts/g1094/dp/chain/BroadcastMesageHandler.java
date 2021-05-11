@@ -7,7 +7,7 @@ public class BroadcastMesageHandler extends ChatHandler{
 
 
 		if (msg.destination.toLowerCase().equals("@everyone")) {
-			System.out.println("@evryone " + msg.text);
+			System.out.println("@everyone " + msg.text);
 			
 		}
 		if(this.next != null) {
