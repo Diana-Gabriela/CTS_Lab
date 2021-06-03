@@ -89,6 +89,8 @@ public class Student {
 		}
 		return min;
 	}
+	
+	
 }
 	
 

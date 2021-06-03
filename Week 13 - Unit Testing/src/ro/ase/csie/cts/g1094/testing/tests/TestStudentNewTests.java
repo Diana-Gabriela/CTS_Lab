@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
 
 import org.junit.After;
@@ -12,10 +13,13 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import ro.ase.csie.cts.g1094.testing.exceptions.WrongAgeException;
 import ro.ase.csie.cts.g1094.testing.exceptions.WrongGradesException;
 import ro.ase.csie.cts.g1094.testing.models.Student;
+import ro.ase.csie.cts.g1094.testing.tests.categories.ImportantTest;
+import ro.ase.csie.cts.g1094.testing.tests.categories.PerformanceTests;
 
 public class TestStudentNewTests {
 	
@@ -25,6 +29,8 @@ public class TestStudentNewTests {
 	static String initialName;
 	static int initialAge;
 	static int initialNoGrades;
+
+	static ArrayList<Integer> performanceGrades = new ArrayList<>();
 
 
 	@BeforeClass
@@ -39,7 +45,12 @@ public class TestStudentNewTests {
 		
 		for(int i = 0; i< initialNoGrades; i++) {
 			grades.add(random.nextInt(Student.MAX_GRADE) + 1);
-			
+		}
+		
+		
+		int noGrades = (int) 1e6;
+		for(int i = 0;i<noGrades;i++) {
+			performanceGrades.add(random.nextInt(Student.MAX_GRADE)+1);
 		}
 	}
 
@@ -106,7 +117,82 @@ public class TestStudentNewTests {
 		
 		assertArrayEquals("we do shallow copy", grades, studentGrades);
 	}
+	@Category({ImportantTest.class, PerformanceTests.class})
+
+	@Test
+	public void testGetGradesAveragePerformance() throws WrongGradesException {
+		ArrayList<Integer> grades = new ArrayList<>();
+		int noGrades = (int) 1e6;
+		Random random = new Random();
+		for(int i = 0;i<noGrades;i++) {
+			grades.add(random.nextInt(Student.MAX_GRADE)+1);
+		}
+		student.setGrades(grades);
+		
+		long tStart = System.currentTimeMillis();
+		student.getGradesAverage();
+		long tFInal = System.currentTimeMillis();
+		
+		long delta = tFInal - tStart;
+		long performaceLimit = 10;
+		if(delta <= performaceLimit) {
+			assertTrue(true);
+		}
+		else {
+			fail("Takes too long");
+		}
+		
+	}
+
+	@Test(timeout = 10)
+	public void testGetGradesAveragePerfomance2() throws WrongGradesException {
+		student.setGrades(performanceGrades);
+		student.getGradesAverage();
+		
+	}
+
+	@Test
+	public void testSetAgeInverse() throws WrongAgeException {
+		int newAge = initialAge +1;
+		student.setAge(newAge);
+		assertNotEquals("setAge not changing age", initialAge, student.getAge());
+	}
 	
-
-
+	@Category(ImportantTest.class)
+	@Test
+	public void testGetMinInverse() throws WrongGradesException {
+		ArrayList<Integer> grades = new ArrayList<>();
+		student.setGrades(performanceGrades);
+		
+		int minGrade = student.getMinGrade();
+		for(int grade: performanceGrades) {
+			if(minGrade > grade ){
+				fail("Val not min");
+				
+			}
+			
+		}
+		assertTrue(true);		
+				
+	}
+	
+	@Category(ImportantTest.class)
+	@Test
+	public void testGetMinCrossCheck() throws WrongGradesException {
+		student.setGrades(performanceGrades);
+	
+		int expectedMin = Collections.min(performanceGrades);
+		int comutedMin = student. getMinGrade();
+		
+		assertEquals("Min incorrect", expectedMin, comutedMin);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

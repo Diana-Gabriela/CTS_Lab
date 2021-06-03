@@ -10,11 +10,14 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.experimental.categories.Category;
 
 import ro.ase.csie.cts.g1094.testing.exceptions.WrongAgeException;
 import ro.ase.csie.cts.g1094.testing.exceptions.WrongGradesException;
 import ro.ase.csie.cts.g1094.testing.exceptions.WrongNameException;
 import ro.ase.csie.cts.g1094.testing.models.Student;
+import ro.ase.csie.cts.g1094.testing.tests.categories.ImportantTest;
+import ro.ase.csie.cts.g1094.testing.tests.categories.PerformanceTests;
 
 public class TestStudent {
 
@@ -97,6 +100,7 @@ public class TestStudent {
 		
 	}
 	
+	@Category(ImportantTest.class)
 	@Test
 	public void testGetMinGradeOrderingAsc() throws WrongGradesException {
 		ArrayList<Integer> orderedGrades = new ArrayList<>();
@@ -124,6 +128,8 @@ public class TestStudent {
 		assertEquals("Testing with 0 grades", expectedGrade, minGrade);
 		
 	}
+	
+	@Category ({ImportantTest.class, PerformanceTests.class})
 	@Test
 	public void testGetMinGradeCardinalityOne() throws WrongGradesException {
 		int singleGrade = 9;
