@@ -46,8 +46,9 @@ public class Student {
 
 
 	public void setAge(int age)throws WrongAgeException {
-		if(age < MIN_AGE )
+		if(age < MIN_AGE || age > MAX_AGE) {
 			throw new WrongAgeException();
+			}
 		this.age = age;
 	}
 
